@@ -1,5 +1,46 @@
 [
-  { "date": "2026-08-25", "macrostructure": "Long Document (journal issue)", "theme": "custom", "theme_axes": "light / roman-serif / warm-cardinal", "vibe": "university press, cardinal ink on cream", "enrichment": "real photography (officer portraits)", "nav": "N6 masthead", "footer": "Ft4 colophon", "brief": "Blockchain@USC rebuild, final (index.html)" },
-  { "date": "2026-08-25", "macrostructure": "Stat-Led", "theme": "custom", "theme_axes": "dark / mono / warm-amber", "vibe": "trading desk, phosphor amber on warm charcoal", "enrichment": "none", "nav": "N8 terminal", "footer": "Ft4 colophon", "brief": "Blockchain@USC rebuild, direction C draft" },
-  { "date": "2026-08-25", "macrostructure": "Modular bulletin grid", "theme": "custom", "theme_axes": "light / display-heavy / warm-red+blue", "vibe": "financial press, ink rules on newsprint", "enrichment": "real photography (team grid)", "nav": "N7 brutal slab", "footer": "Ft2 inline", "brief": "Blockchain@USC rebuild, direction B draft" }
+  {
+    "date": "2026-08-25",
+    "macrostructure": "Centered marquee over journal body",
+    "theme": "studied-DNA (source: image, team reference)",
+    "theme_axes": "light / roman-serif / warm-cardinal + violet wash",
+    "vibe": "cardinal serif on lavender-rose wash, graph-paper grid",
+    "enrichment": "real photography (officer portraits)",
+    "nav": "N5 floating pill",
+    "footer": "Ft4 colophon",
+    "brief": "Blockchain@USC v2 skin: teammates' color scheme, slightly more tech"
+  },
+  {
+    "date": "2026-08-25",
+    "macrostructure": "Long Document (journal issue)",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / warm-cardinal",
+    "vibe": "university press, cardinal ink on cream",
+    "enrichment": "real photography (officer portraits)",
+    "nav": "N6 masthead",
+    "footer": "Ft4 colophon",
+    "brief": "Blockchain@USC rebuild, final (index.html)"
+  },
+  {
+    "date": "2026-08-25",
+    "macrostructure": "Stat-Led",
+    "theme": "custom",
+    "theme_axes": "dark / mono / warm-amber",
+    "vibe": "trading desk, phosphor amber on warm charcoal",
+    "enrichment": "none",
+    "nav": "N8 terminal",
+    "footer": "Ft4 colophon",
+    "brief": "Blockchain@USC rebuild, direction C draft"
+  },
+  {
+    "date": "2026-08-25",
+    "macrostructure": "Modular bulletin grid",
+    "theme": "custom",
+    "theme_axes": "light / display-heavy / warm-red+blue",
+    "vibe": "financial press, ink rules on newsprint",
+    "enrichment": "real photography (team grid)",
+    "nav": "N7 brutal slab",
+    "footer": "Ft2 inline",
+    "brief": "Blockchain@USC rebuild, direction B draft"
+  }
 ]

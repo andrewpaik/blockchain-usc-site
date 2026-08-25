@@ -18,3 +18,13 @@ Rationale recorded: A is the most unique for the category (no crypto club looks 
 university press), and it grows from the club's most defensible identity, its published research.
 B and C remain complete and can be developed to final on request. The direction choice
 remains the owners' call; this file should be updated with their words when they choose.
+
+## V2 (2026-08-25, same day): user direction change, gate satisfied by user choice
+
+Andrew brought a reference image his teammates prefer (lavender-to-rose wash, fine grid mesh,
+cardinal serif display "Research. Invest. Build.", floating pill nav, ink pill buttons,
+"EST. 2018" eyebrow) and asked for it "slightly more tech-like." Per hallmark's study verb the
+reference DNA was extracted and the Journal's content rebuilt in it; the tech push is carried by
+the graph-paper grid canvas and the mono data layer (stat rail, ledger, dates, labels).
+This is an iteration inside a user-chosen direction (huashu exemption: direction picked by the
+user), so no new three-direction round. Deployed to production 2026-08-25.

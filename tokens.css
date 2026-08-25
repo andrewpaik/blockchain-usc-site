@@ -1,23 +1,29 @@
-/* Blockchain@USC design tokens · "The Journal"
- * Derivation: accent sampled from the cardinal of the club mark, chroma pressed to 0.15
- * for print-ink density; neutrals tinted warm (hue 40-85) to agree with the cardinal/gold anchor.
- * Committed single-look: light, print-emulating editorial. */
+/* Blockchain@USC design tokens · v2 "Cardinal Mesh"
+ * DNA studied from the team's reference image (2026-08-25): near-white canvas with a
+ * lavender-to-rose wash and a fine grid, cardinal serif display, floating pill nav,
+ * ink pill buttons. Tech register carried by the mono data layer and graph-paper grid.
+ * Neutrals tinted cool-violet to agree with the wash; cardinal stays the sole accent.
+ * Committed single-look: light. */
 :root {
   /* color */
-  --paper:    oklch(96.5% 0.012 85);
-  --paper-2:  oklch(93.5% 0.014 85);
-  --rule:     oklch(84% 0.014 80);
-  --rule-2:   oklch(70% 0.014 70);
-  --ink:      oklch(21% 0.015 40);
-  --muted:    oklch(42% 0.014 50);
-  --faint:    oklch(46% 0.012 55);
-  --accent:   oklch(46% 0.15 24);
-  --accent-2: oklch(38% 0.14 24);
-  --gain:     oklch(45% 0.11 150);
-  --gold:     oklch(84% 0.14 85);
-  --focus:    oklch(46% 0.15 24);
+  --paper:    oklch(98.4% 0.004 300);
+  --wash-a:   oklch(91% 0.05 290);            /* lavender, background wash only */
+  --wash-b:   oklch(92% 0.045 15);            /* rose, background wash only */
+  --gridline: oklch(70% 0.03 300 / 0.16);     /* graph-paper lines */
+  --surface:  oklch(99.3% 0.002 300 / 0.8);   /* nav pill, blur-backed */
+  --card:     oklch(99.3% 0.002 300 / 0.6);   /* data surfaces */
+  --rule:     oklch(87% 0.012 300);
+  --rule-2:   oklch(74% 0.016 300);
+  --ink:      oklch(19% 0.02 310);
+  --muted:    oklch(42% 0.022 300);
+  --faint:    oklch(46% 0.02 300);
+  --cardinal: oklch(44% 0.16 20);
+  --cardinal-2: oklch(36% 0.15 20);
+  --gain:     oklch(42% 0.1 150);
+  --select:   oklch(89% 0.06 15);
+  --focus:    oklch(44% 0.16 20);
 
-  /* type: Newsreader (display) + Geist (body) + Geist Mono (outlier, role: data, dates, catalog labels) */
+  /* type: Newsreader (display) + Geist (body) + Geist Mono (outlier role: data, dates, labels) */
   --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --font-body:    "Geist", "Helvetica Neue", Arial, sans-serif;
   --font-data:    "Geist Mono", "SFMono-Regular", Menlo, monospace;
@@ -30,7 +36,7 @@
   --text-lg:   1.5625rem;
   --text-xl:   1.9531rem;
   --text-2xl:  2.4414rem;
-  --text-display: clamp(2.6rem, 4.6vw + 1rem, 5rem);
+  --text-display: clamp(2.9rem, 6.2vw + 1rem, 6rem);
 
   /* space: 4pt scale */
   --space-2xs: 0.25rem;
@@ -42,6 +48,10 @@
   --space-2xl: 4rem;
   --space-3xl: 6rem;
   --space-4xl: 8.5rem;
+
+  /* shape rule: interactive chrome is pill; data surfaces are 12px; rows and rules are square */
+  --r-pill: 999px;
+  --r-md: 12px;
 
   /* motion */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);

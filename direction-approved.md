@@ -40,3 +40,13 @@ UI tools (shadcn, beui, rareui, beautifului, transitions.dev): all React-ecosyst
 not installed into this dependency-free build; recorded in TOOLING.md as the sanctioned stack for a
 future React migration. One pattern adopted natively today: transitions.dev-style origin-aware nav
 hover underline. Deployed to production.
+
+## V5 (2026-08-25): React runtime migration + hero figure (user-requested)
+
+Andrew asked for a React runtime and an image beside "Research. Invest. Build." Migrated to
+Next.js App Router with output: 'export' (static-fast, host-agnostic, React runtime on board),
+Tailwind v4 + shadcn foundation wired to the same tokens (radius 0, cardinal primary), content
+extracted to lib/content.ts so officers edit data instead of markup. V4 look preserved exactly.
+Hero figure: the club's own mark printed large (real asset over generated or stock; the conference
+site had no usable event photography). The slot swaps to a real photograph when one exists.
+Static V1-V4 files archived under archive/.

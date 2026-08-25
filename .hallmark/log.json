@@ -2,6 +2,17 @@
   {
     "date": "2026-08-25",
     "macrostructure": "Long Document (journal issue)",
+    "theme": "journal x cardinal-mesh, quieted (V4 look, V5 runtime)",
+    "theme_axes": "light / roman-serif / warm-cardinal + violet wash",
+    "vibe": "same issue, now a Next.js static export; the mark printed large as the hero figure",
+    "enrichment": "real brand mark as hero figure + officer portraits",
+    "nav": "N6 masthead",
+    "footer": "Ft4 colophon",
+    "brief": "Blockchain@USC v5: React runtime migration + hero figure"
+  },
+  {
+    "date": "2026-08-25",
+    "macrostructure": "Long Document (journal issue)",
     "theme": "journal x cardinal-mesh, quieted (V4)",
     "theme_axes": "light / roman-serif / warm-cardinal + violet wash",
     "vibe": "one texture per region, three proofs, decorative red rationed",

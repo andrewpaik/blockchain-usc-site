@@ -1,8 +1,9 @@
 # Tooling notes
 
-The site is deliberately dependency-free: hand-written HTML/CSS on a token system
-(`tokens.css`), no framework, no build step. That is where its speed and its
-non-template character come from, so component libraries are not installed here.
+Update 2026-08-25: the site now runs on Next.js (App Router, static export) with the
+Tailwind v4 + shadcn/ui foundation initialized and mapped to the design tokens in
+`app/globals.css`. beui/rareui components can now install via `npx shadcn@latest add ...`;
+re-tokenize anything added (never default state). Content lives in `lib/content.ts`.
 
 ## Reviewed 2026-08-25 (suggested by the team)
 

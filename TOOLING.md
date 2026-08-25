@@ -9,9 +9,9 @@ re-tokenize anything added (never default state). Content lives in `lib/content.
 
 | Tool | What it is | Fit today | Fit later |
 |---|---|---|---|
-| ui.shadcn.com | Design-system foundation for React/Tailwind | No React runtime here | The base if the site ever becomes a Next.js app |
-| beui.dev | 110 animated React components (Motion + Tailwind, ships via shadcn CLI) | Same | Good source for app-like features |
-| rareui.com | 14 animated React components via shadcn CLI | Same | Same |
+| ui.shadcn.com | Design-system foundation for React/Tailwind | Foundation initialized (components.json, tokens mapped) | Add components as features need them |
+| beui.dev | 110 animated React components (Motion + Tailwind, ships via shadcn CLI) | Installable now via the shadcn CLI | Good source for app-like features |
+| rareui.com | 14 animated React components via shadcn CLI | Installable now via the shadcn CLI | Same |
 | beautifului.dev | React primitives for AI-native interfaces (thinking traces, tool chips, task rows) | No AI-chat surface on this site | The kit to reach for if the club builds an assistant or live-agent UI |
 | transitions.dev | Micro-transition patterns (copy-paste + agent skill) | Patterns are portable; the nav underline (origin-aware grow, left) is adapted natively in `index.html` | Full catalog applies once there is app UI |
 

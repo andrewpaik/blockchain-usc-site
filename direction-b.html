@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blockchain@USC</title>
+<meta name="description" content="Blockchain@USC: one of the oldest crypto student organizations in the country. Research, an on-chain portfolio, and shipped projects at the University of Southern California.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · genre: editorial-brutalist · macrostructure: modular bulletin grid · theme: custom (vibe: "financial press, ink rules on newsprint" · paper oklch(97.5% 0.004 90) · accent oklch(54% 0.2 28) signal red + hyperlink blue · Archivo + Inter) · enrichment: real photography (team) · nav: N7 brutal slab · footer: Ft2 inline line
+ * Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
+ * form-from-content: the club runs real capital and publishes; the page is set as an issue of a business weekly.
+ * benchmark (huashu logic 2): Bloomberg Businessweek's Turley-era editorial brutalism, transferred, not copied. */
+:root {
+  --paper:  oklch(97.5% 0.004 90);
+  --paper-2:oklch(94% 0.006 90);
+  --ink:    oklch(15% 0.012 60);
+  --muted:  oklch(38% 0.01 60);
+  --faint:  oklch(52% 0.008 60);
+  --red:    oklch(54% 0.2 28);
+  --blue:   oklch(44% 0.26 264);
+  --focus:  oklch(44% 0.26 264);
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "Geist Mono", Menlo, monospace;
+
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.5rem;
+  --text-display: clamp(2.6rem, 7.2vw, 6rem);
+
+  --space-2xs:.25rem; --space-xs:.5rem; --space-sm:.75rem; --space-md:1rem;
+  --space-lg:1.5rem; --space-xl:2.5rem; --space-2xl:4rem; --space-3xl:6rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 120ms; --dur-short: 220ms;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body {
+  overflow-x: clip; background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--text-base); line-height: 1.55;
+  font-synthesis: none; -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--ink); color: var(--paper); }
+h1,h2,h3 { font-style: normal; overflow-wrap: anywhere; min-width: 0; }
+p { text-wrap: pretty; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+.wrap { max-width: 82rem; margin-inline: auto; padding-inline: clamp(1rem, 3.5vw, 2.5rem); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.display { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: -0.015em; line-height: 1.04; }
+
+/* ---------- nav: brutal slab ---------- */
+.bar { position: sticky; top: 0; z-index: 200; background: var(--paper); border-bottom: 3px solid var(--ink); }
+.bar__in { display: flex; align-items: stretch; justify-content: space-between; gap: var(--space-md); }
+.bar__brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; padding-block: .7rem; }
+.bar__brand img { width: 30px; height: 30px; }
+.bar__brand span { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1.15rem; white-space: nowrap; }
+.bar__links { display: flex; align-items: stretch; overflow-x: auto; scrollbar-width: none; }
+.bar__links::-webkit-scrollbar { display: none; }
+.bar__link {
+  display: inline-flex; align-items: center; padding-inline: clamp(.5rem, 1.4vw, 1.1rem);
+  font-family: var(--font-display); font-weight: 600; font-size: .8125rem;
+  text-transform: uppercase; letter-spacing: .05em; text-decoration: none; white-space: nowrap;
+  border-left: 1px solid var(--ink); min-height: 48px;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.bar__link:hover { background: var(--ink); color: var(--paper); }
+.bar__link--apply { background: var(--red); color: var(--paper); }
+.bar__link--apply:hover { background: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { border-bottom: 1px solid var(--ink); }
+.hero__head { padding-block: clamp(1.75rem, 4.5vw, 3.5rem) clamp(1.25rem, 3vw, 2.25rem); }
+.hero h1 { font-size: var(--text-display); max-width: 20ch; }
+.hero h1 .r { color: var(--red); }
+.hero__deck { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,3.5fr) minmax(0,3.5fr); border-top: 1px solid var(--ink); }
+.hero__cell { padding: var(--space-lg) var(--space-lg) var(--space-lg) 0; border-right: 1px solid var(--ink); }
+.hero__cell:last-child { border-right: 0; padding-right: 0; }
+.hero__cell + .hero__cell { padding-left: var(--space-lg); }
+.hero__lede { font-size: var(--text-md); line-height: 1.5; max-width: 46ch; }
+.hero__lede strong { font-weight: 600; }
+.kick { font-family: var(--font-data); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-sm); }
+.hero__nav { font-family: var(--font-data); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.hero__stat .n { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 3.6vw, 3.4rem); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.hero__stat .q { margin-top: var(--space-xs); font-size: var(--text-sm); color: var(--muted); max-width: 26ch; }
+.hero__apply p { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--space-md); max-width: 28ch; }
+.hero__apply p b { color: var(--ink); }
+.slab {
+  display: inline-flex; align-items: center; gap: .5rem; min-height: 46px;
+  background: var(--red); color: var(--paper); text-decoration: none;
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  letter-spacing: .03em; font-size: .875rem; padding: .6rem 1.2rem; white-space: nowrap;
+  transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.slab:hover { background: var(--ink); }
+.slab:active { transform: translateY(1px); }
+.slab--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.slab--ghost:hover { background: var(--ink); color: var(--paper); }
+
+/* blue hyperlinks, the Businessweek tell used honestly */
+.blu { color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+.blu:hover { text-decoration-thickness: 2.5px; }
+p .blu, td .blu, .idx .blu { min-height: auto; display: inline; }
+
+/* ---------- section frame ---------- */
+.sec { border-bottom: 1px solid var(--ink); padding-block: clamp(2rem, 5vw, 3.5rem); }
+.sec__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-md); flex-wrap: wrap; margin-bottom: clamp(1.25rem, 3vw, 2rem); }
+.sec__head h2 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; font-size: clamp(1.7rem, 3.6vw, 2.8rem); line-height: 1.04; }
+.sec__head .tag { font-family: var(--font-data); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+/* about */
+.about__grid { display: grid; grid-template-columns: minmax(0,4fr) minmax(0,4fr) minmax(0,3fr); gap: var(--space-xl); }
+.about__col p + p, .about__col h3 + p { margin-top: var(--space-sm); }
+.about__col h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: .9375rem; letter-spacing: .02em; }
+.about__col h3 + p { margin-top: var(--space-xs); }
+.about__col .b { border-top: 4px solid var(--ink); padding-top: var(--space-sm); }
+.about__col + .about__col .b { border-top-width: 1px; }
+.pullstat { background: var(--ink); color: var(--paper); padding: var(--space-lg); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-xl); }
+.pullstat .n { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 4.5vw, 4rem); line-height: .95; letter-spacing: -0.02em; }
+.pullstat .q { font-size: var(--text-sm); opacity: .85; max-width: 26ch; }
+.about__firms { margin-top: var(--space-lg); border-top: 1px solid var(--ink); padding-top: var(--space-sm); font-size: var(--text-sm); color: var(--muted); }
+.about__firms b { color: var(--ink); font-weight: 600; }
+
+/* recruiting: date grid */
+.dates { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.date { border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: var(--space-md); min-height: 8.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-md); }
+.date .d { font-family: var(--font-data); font-size: .8125rem; font-variant-numeric: tabular-nums; color: var(--muted); }
+.date h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.05rem; letter-spacing: .01em; line-height: 1.1; }
+.date .t { font-size: var(--text-sm); color: var(--muted); }
+.date--due { background: var(--red); color: var(--paper); }
+.date--due .d, .date--due .t { color: oklch(96% 0.02 28); }
+.date--invite { background: var(--paper-2); }
+.dates__foot { margin-top: var(--space-md); font-size: var(--text-sm); color: var(--muted); max-width: 62ch; }
+
+/* investments */
+.numbers { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.num { border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: var(--space-lg) var(--space-md); }
+.num .n { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.9rem, 3.4vw, 3.2rem); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.num .n.dn { color: var(--red); }
+.num .q { margin-top: var(--space-sm); font-size: var(--text-sm); color: var(--muted); }
+.inv__grid { display: grid; grid-template-columns: minmax(0,7fr) minmax(0,4fr); gap: var(--space-xl); margin-top: var(--space-xl); }
+.inv__prose p + p { margin-top: var(--space-sm); }
+.inv__prose { max-width: 62ch; }
+.inv__links { margin-top: var(--space-md); display: flex; gap: var(--space-lg); flex-wrap: wrap; }
+.progs { border-top: 4px solid var(--ink); }
+.progs li { list-style: none; padding: var(--space-md) 0; border-bottom: 1px solid var(--ink); }
+.progs h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: .9375rem; display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md); }
+.progs p { margin-top: .3rem; font-size: var(--text-sm); color: var(--muted); }
+
+/* research index */
+.idx { border-top: 1px solid var(--ink); }
+.idx li { list-style: none; border-bottom: 1px solid var(--ink); }
+.idx a { display: grid; grid-template-columns: 6.5rem minmax(0,1fr) auto; gap: var(--space-md); align-items: baseline; padding: .8rem 0; text-decoration: none; transition: background-color var(--dur-micro) var(--ease-out); }
+.idx a:hover { background: var(--paper-2); }
+.idx .i-d { font-family: var(--font-data); font-size: .75rem; color: var(--faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.idx .i-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-md); line-height: 1.25; color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.idx a:hover .i-t { text-decoration-thickness: 2.5px; }
+.idx .i-a { font-size: var(--text-sm); color: var(--muted); white-space: nowrap; text-align: right; }
+.idx__lead { display: grid; grid-template-columns: minmax(0,8fr) minmax(0,3fr); gap: var(--space-xl); padding-bottom: var(--space-lg); }
+.idx__lead h3 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.05; letter-spacing: -0.01em; max-width: 18ch; }
+.idx__lead h3 a { text-decoration: none; }
+.idx__lead h3 a:hover { color: var(--blue); }
+.idx__lead p { margin-top: var(--space-sm); color: var(--muted); max-width: 56ch; }
+.idx__lead .meta { align-self: end; font-size: var(--text-sm); color: var(--muted); text-align: right; }
+.idx__lead .meta b { color: var(--ink); display: block; font-weight: 600; }
+.idx__more { margin-top: var(--space-lg); }
+
+/* projects */
+.ships { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.ship { border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); min-height: 13rem; }
+.ship .k { font-family: var(--font-data); font-size: .75rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+.ship h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.05rem; line-height: 1.12; letter-spacing: .005em; }
+.ship p { font-size: var(--text-sm); color: var(--muted); flex: 1; }
+.ship .blu { align-self: start; }
+
+/* team */
+.crew { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.crew li { list-style: none; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.crew figure { position: relative; }
+.crew img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter var(--dur-short) var(--ease-out); }
+.crew li:hover img { filter: grayscale(0); }
+.crew figcaption { padding: var(--space-sm) var(--space-md) var(--space-md); }
+.crew .c-n { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: .9375rem; letter-spacing: .01em; }
+.crew .c-r { font-size: var(--text-sm); color: var(--muted); margin-top: .1rem; }
+.crew .c-l { margin-top: .45rem; display: flex; gap: .75rem; font-size: .8125rem; }
+.crew .c-l a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.crew li.crew__note { background: var(--ink); color: var(--paper); padding: var(--space-md); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-md); }
+.crew__note p { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.15rem; line-height: 1.15; }
+.crew__note .slab { background: var(--paper); color: var(--ink); align-self: start; }
+.crew__note .slab:hover { background: var(--red); color: var(--paper); }
+
+/* partners */
+.wall { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.wall li { list-style: none; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: grid; place-items: center; min-height: 84px; padding: var(--space-md); }
+.wall img { filter: brightness(0); opacity: .8; max-height: 24px; width: auto; max-width: 80%; }
+.wall li:hover img { opacity: 1; }
+
+/* apply slab */
+.applyslab { background: var(--ink); color: var(--paper); }
+.applyslab .in { padding-block: clamp(2rem, 5vw, 3.5rem); display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--space-xl); align-items: center; }
+.applyslab h2 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; font-size: clamp(1.7rem, 4vw, 3.2rem); line-height: 1.04; max-width: 22ch; }
+.applyslab h2 .r { color: oklch(70% 0.19 30); }
+.applyslab p { margin-top: var(--space-sm); font-size: var(--text-sm); opacity: .8; max-width: 52ch; }
+
+/* footer Ft2 */
+.foot { padding-block: var(--space-lg) var(--space-xl); }
+.foot__line { display: flex; flex-wrap: wrap; gap: .25rem clamp(1rem, 2.5vw, 2rem); align-items: center; font-family: var(--font-data); font-size: .75rem; letter-spacing: .04em; color: var(--muted); }
+.foot__line a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+.foot__line a:hover { color: var(--blue); }
+.foot__line .fo { color: var(--red); font-weight: 500; margin-left: auto; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 80ms !important; animation: none !important; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 60rem) {
+  .hero__deck { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  .hero__cell:first-child { grid-column: 1 / -1; border-right: 0; padding-right: 0; border-bottom: 1px solid var(--ink); }
+  .hero__cell:nth-child(2) { padding-left: 0; }
+  .about__grid { grid-template-columns: minmax(0,1fr); }
+  .pullstat { flex-direction: row; align-items: end; }
+  .dates { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .numbers { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .inv__grid { grid-template-columns: minmax(0,1fr); }
+  .ships { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .ship { min-height: 0; }
+  .crew { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .wall { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .idx__lead { grid-template-columns: minmax(0,1fr); }
+  .idx__lead .meta { text-align: left; }
+  .applyslab .in { grid-template-columns: minmax(0,1fr); }
+}
+@media (max-width: 40rem) {
+  .bar__brand { flex-shrink: 0; }
+  .bar__brand span { display: none; }
+  .dates { grid-template-columns: minmax(0,1fr); }
+  .date { min-height: 0; }
+  .idx a { grid-template-columns: minmax(0,1fr); gap: .15rem; }
+  .idx .i-a { text-align: left; white-space: normal; }
+  .ships, .crew { grid-template-columns: minmax(0,1fr); }
+  .wall { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .pullstat { flex-direction: column; align-items: start; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="bar__brand" href="#top"><img src="assets/logo.png" alt="" width="30" height="30"><span>Blockchain@USC</span></a>
+    <nav class="bar__links" aria-label="Sections">
+      <a class="bar__link" href="#about">About</a>
+      <a class="bar__link" href="#investments">Investments</a>
+      <a class="bar__link" href="#research">Research</a>
+      <a class="bar__link" href="#projects">Projects</a>
+      <a class="bar__link" href="#team">Team</a>
+      <a class="bar__link bar__link--apply" href="#recruiting">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <div class="hero__head">
+      <h1 class="display">Students running real capital on real <span class="r">chains.</span></h1>
+    </div>
+    <div class="hero__deck">
+      <div class="hero__cell">
+        <p class="hero__lede"><strong>Blockchain@USC</strong> is one of the oldest crypto student organizations in the country: a research desk that publishes, a portfolio of more than $100K voted on by members, and a projects desk that ships.</p>
+      </div>
+      <div class="hero__cell hero__stat">
+        <p class="kick">Season NAV, Dorm Capital</p>
+        <p class="n">$116,769</p>
+        <p class="q">on-chain, ranked live against 16 other university clubs</p>
+      </div>
+      <div class="hero__cell hero__apply">
+        <p class="kick">Fall '26 recruiting</p>
+        <p><b>Applications close Sep 6.</b> No crypto experience required; every major welcome.</p>
+        <a class="slab" href="#recruiting">Apply Fall '26</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="sec wrap">
+    <div class="sec__head">
+      <h2>What this club is</h2>
+      <span class="tag">Two desks, one application</span>
+    </div>
+    <div class="about__grid">
+      <div class="about__col">
+        <div class="b">
+        <h3>Research &amp; Investments</h3>
+        <p>Research on the digital-asset ecosystem for bounties, publications, and competitions. The desk manages a portfolio of more than $100,000 in digital assets; every investment is pitched and voted on by members before a dollar moves.</p>
+        </div>
+        <div class="b" style="margin-top: var(--space-lg)">
+        <h3>Projects</h3>
+        <p>Grants, hackathons, and consulting clients, for real prize money and funding. Marketing, events, and partnership work runs on the same desk.</p>
+        </div>
+      </div>
+      <div class="about__col">
+        <div class="b">
+        <h3>What members get</h3>
+        <p>An education program that assumes zero background. Professional research platforms and premium AI tooling. Sponsored travel to conferences like ETHDenver and UBC, and an annual conference co-hosted with VanEck alongside Circle and Solana.</p>
+        </div>
+        <p class="about__firms"><b>Where alumni land:</b> BlackRock, Coinbase, Jump Trading, Polychain Capital, 50T.</p>
+      </div>
+      <div class="pullstat">
+        <p class="n">$7M+</p>
+        <p class="q">raised by member founders, from investors including Paradigm</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="recruiting" class="sec wrap">
+    <div class="sec__head">
+      <h2>Fall '26 recruiting</h2>
+      <span class="tag">Six dates, in order</span>
+    </div>
+    <ol class="dates">
+      <li class="date"><span class="d">Wed, Aug 26</span><h3>Involvement Fair</h3><p class="t">11:00am to 2:00pm, open to all</p></li>
+      <li class="date"><span class="d">Tue, Sep 1</span><h3>Open Info Session</h3><p class="t">7:00pm to 8:00pm, open to all</p></li>
+      <li class="date date--due"><span class="d">Sun, Sep 6</span><h3>Application deadline</h3><p class="t">11:59pm sharp</p></li>
+      <li class="date date--invite"><span class="d">Sep 10 &amp; 11</span><h3>Interviews</h3><p class="t">invite only, times TBD</p></li>
+      <li class="date date--invite"><span class="d">Sun, Sep 13</span><h3>Social Mixer</h3><p class="t">6:00pm to 8:00pm, invite only</p></li>
+      <li class="date date--invite"><span class="d">Tue, Sep 15</span><h3>First member meeting</h3><p class="t">invite only</p></li>
+    </ol>
+    <p class="dates__foot">Start at the Involvement Fair or the info session, then apply by September 6. Questions to <a class="blu" href="mailto:bchain@usc.edu">bchain@usc.edu</a>.</p>
+  </section>
+
+  <section id="investments" class="sec wrap">
+    <div class="sec__head">
+      <h2>The numbers</h2>
+      <span class="tag">Dorm Capital, on the record</span>
+    </div>
+    <div class="numbers">
+      <div class="num"><p class="n">+18.30%</p><p class="q">ETH return since inception, Oct 2023</p></div>
+      <div class="num"><p class="n dn">-29.56%</p><p class="q">USD return since inception; public and sometimes red</p></div>
+      <div class="num"><p class="n">#2/17</p><p class="q">all-time rank on the DormDAO leaderboard</p></div>
+      <div class="num"><p class="n">#6/17</p><p class="q">2025-26 season rank, updated live</p></div>
+    </div>
+    <div class="inv__grid">
+      <div class="inv__prose">
+        <p><strong>Dorm Capital</strong> is our seat in DormDAO, a student-run investment DAO uniting 17 university blockchain clubs across the US, Canada, and the UK. Each school manages its own on-chain portfolio and competes on a transparent, real-time leaderboard: real capital and real experience before graduation.</p>
+        <div class="inv__links">
+          <a class="blu" href="https://www.dormdao.io/" target="_blank" rel="noopener">DormDAO ↗</a>
+          <a class="blu" href="https://www.dormdao.io/leaderboard" target="_blank" rel="noopener">Full leaderboard ↗</a>
+        </div>
+      </div>
+      <ul class="progs">
+        <li><h3>Trading competition <a class="blu" href="https://www.legend.trade/" target="_blank" rel="noopener">Legend ↗</a></h3>
+          <p>Turn $1,000 into $10,000 in a live competition, exclusive to members.</p></li>
+        <li><h3>Prediction markets <a class="blu" href="https://www.gemini.com/predictions?status=active" target="_blank" rel="noopener">Gemini ↗</a></h3>
+          <p>Hands-on experience trading real-world event outcomes.</p></li>
+        <li><h3>Club treasury</h3>
+          <p>Long-term allocation of club assets, managed with real accountability.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="research" class="sec wrap">
+    <div class="sec__head">
+      <h2>The index</h2>
+      <span class="tag">Protocol-grade research</span>
+    </div>
+    <div class="idx__lead">
+      <div>
+        <p class="kick" style="color: var(--red)">Latest</p>
+        <h3><a href="https://medium.com/blockchain-at-usc/making-web3-social-9ce832042ed0" target="_blank" rel="noopener">Making Web3 Social</a></h3>
+        <p>On what it would take for social to move on-chain: identity, connection, and why we keep returning to the feed.</p>
+      </div>
+      <p class="meta"><b>Shriya Upadhyay</b> April 30, 2026</p>
+    </div>
+    <ul class="idx">
+      <li><a href="https://medium.com/blockchain-at-usc/unichain-incentive-analysis-43390c48e423" target="_blank" rel="noopener">
+        <span class="i-d">2025-10</span><span class="i-t">Unichain Incentive Analysis</span><span class="i-a">Sampedro, Saar, Becerra</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/incentive-impact-analysis-velodrome-0741ff9676c4" target="_blank" rel="noopener">
+        <span class="i-d">2025-09</span><span class="i-t">Incentive Impact Analysis: Velodrome</span><span class="i-a">Rai, Chai, Zhou, Feng</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/the-fault-tolerant-consensus-problem-and-its-solutions-in-blockchains-and-distributed-systems-7f883227ebc7" target="_blank" rel="noopener">
+        <span class="i-d">2023-10</span><span class="i-t">The Fault-Tolerant Consensus Problem and Its Solutions</span><span class="i-a">Zaarour</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/web3-social-driving-new-forms-of-identity-connection-value-creation-889babc9fe54" target="_blank" rel="noopener">
+        <span class="i-d">2023-10</span><span class="i-t">Web3 Social: Identity, Connection &amp; Value Creation</span><span class="i-a">with Superscrypt</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/deep-dive-into-account-abstraction-and-eip-4337-scaling-ethereum-ux-from-0-to-1-c2e6da49d226" target="_blank" rel="noopener">
+        <span class="i-d">2023-03</span><span class="i-t">Account Abstraction and EIP-4337</span><span class="i-a">Zaarour</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/reembedding-dao-d372905624a8" target="_blank" rel="noopener">
+        <span class="i-d">2022-11</span><span class="i-t">In the Re-embedding Moment</span><span class="i-a">Zhou</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/ftx-sbf-crisis-1e425004317a" target="_blank" rel="noopener">
+        <span class="i-d">2022-11</span><span class="i-t">Talking to the Stranger, SBF</span><span class="i-a">Zhou</span></a></li>
+      <li><a href="https://medium.com/blockchain-at-usc/scaling-solutions-of-monolithic-and-modular-chains-922b6ee7bfb4" target="_blank" rel="noopener">
+        <span class="i-d">2022-11</span><span class="i-t">Scaling Solutions of Monolithic and Modular Chains</span><span class="i-a">Chen, Gnanasekaran, Jeter</span></a></li>
+    </ul>
+    <p class="idx__more"><a class="blu" href="https://medium.com/blockchain-at-usc" target="_blank" rel="noopener">Full archive on Medium ↗</a></p>
+  </section>
+
+  <section id="projects" class="sec wrap">
+    <div class="sec__head">
+      <h2>Shipped at build night</h2>
+      <span class="tag">Solidity, hands on</span>
+    </div>
+    <ol class="ships">
+      <li class="ship"><span class="k">Build Night 01</span><h3>Hello World &amp; Counter dApp</h3>
+        <p>A Hello World contract in Remix, then a full-stack counter dApp on Sepolia with Hardhat and an ethers.js React frontend.</p>
+        <a class="blu" href="https://github.com/BlockchainUSC/Build-Night-1" target="_blank" rel="noopener">View repo ↗</a></li>
+      <li class="ship"><span class="k">Build Night 02</span><h3>Crowdfunding dApp</h3>
+        <p>Launchable campaigns, ETH pledges, and creator claims, deployed to Sepolia on the same stack.</p>
+        <a class="blu" href="https://github.com/BlockchainUSC/Build-Night-2" target="_blank" rel="noopener">View repo ↗</a></li>
+      <li class="ship"><span class="k">Build Night 03</span><h3>Create your own token</h3>
+        <p>An ERC-20 with OpenZeppelin: mint, burn, and transfer from a React frontend against a live contract.</p>
+        <a class="blu" href="https://github.com/BlockchainUSC/Build-Night-3" target="_blank" rel="noopener">View repo ↗</a></li>
+      <li class="ship"><span class="k">HackSC 2024</span><h3>Voting dApp</h3>
+        <p>A decentralized voting app on Ethereum, run as a workshop with Solidity, Hardhat, and React.</p>
+        <a class="blu" href="https://github.com/BlockchainUSC/HackSC-2024" target="_blank" rel="noopener">View repo ↗</a></li>
+    </ol>
+  </section>
+
+  <section id="team" class="sec wrap">
+    <div class="sec__head">
+      <h2>The officers</h2>
+      <span class="tag">2026</span>
+    </div>
+    <ul class="crew">
+      <li><figure><img src="assets/team/sebastian_sampedro_illustrated.jpg" alt="Sebastian Sampedro" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Sebastian Sampedro</p><p class="c-r">Co-President</p>
+        <p class="c-l"><a href="https://x.com/donostiako_" target="_blank" rel="noopener">X</a> <a href="https://www.linkedin.com/in/sxsampedro/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li><figure><img src="assets/team/alp_guneri_illustrated.jpg" alt="Alp Guneri" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Alp Guneri</p><p class="c-r">Co-President</p>
+        <p class="c-l"><a href="https://x.com/GuneriAlp" target="_blank" rel="noopener">X</a> <a href="https://www.linkedin.com/in/alpguneri/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li><figure><img src="assets/team/austin_lee.jpg" alt="Austin Lee" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Austin Lee</p><p class="c-r">Director of Projects</p>
+        <p class="c-l"><a href="https://www.linkedin.com/in/yuanchiaolee/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li><figure><img src="assets/team/andrew_paik.jpg" alt="Andrew Paik" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Andrew Paik</p><p class="c-r">Director of Research &amp; Investments</p>
+        <p class="c-l"><a href="https://www.linkedin.com/in/andrew-paik-9b78882b3/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li><figure><img src="assets/team/lindsey_ren.jpg" alt="Lindsey Ren" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Lindsey Ren</p><p class="c-r">Head of Partnerships</p>
+        <p class="c-l"><a href="https://www.linkedin.com/in/lindsey-ren/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li><figure><img src="assets/team/bhargav_cowdary.jpg" alt="Bhargav Cowdary" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Bhargav Cowdary</p><p class="c-r">Head of Community</p>
+        <p class="c-l"><a href="https://www.linkedin.com/in/bhargav-chowdary0/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li><figure><img src="assets/team/melanie_aguirre_illustrated.jpg" alt="Melanie Aguirre" width="512" height="512" loading="lazy">
+        <figcaption><p class="c-n">Melanie Aguirre</p><p class="c-r">Head of Marketing</p>
+        <p class="c-l"><a href="https://www.linkedin.com/in/melanie-aguirre05/" target="_blank" rel="noopener">LinkedIn</a></p></figcaption></figure></li>
+      <li class="crew__note">
+        <p>The eighth seat is open every fall.</p>
+        <a class="slab" href="#recruiting">Apply Fall '26</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="sec wrap" aria-label="Partners">
+    <div class="sec__head">
+      <h2>Partners</h2>
+      <span class="tag">Conference &amp; program partners</span>
+    </div>
+    <ul class="wall">
+      <li><img src="assets/logos/vaneck.svg" alt="VanEck" height="24"></li>
+      <li><img src="assets/logos/a16z-mono.png" alt="a16z crypto" height="24"></li>
+      <li><img src="assets/logos/solana.svg" alt="Solana" height="24"></li>
+      <li><img src="assets/logos/circle.svg" alt="Circle" height="24"></li>
+      <li><img src="assets/logos/optimism.svg" alt="Optimism" height="24"></li>
+      <li><img src="assets/logos/superscrypt.png" alt="Superscrypt" height="24"></li>
+      <li><img src="assets/logos/dormdao.png" alt="DormDAO" height="24"></li>
+      <li><img src="assets/logos/sui.svg" alt="Sui" height="24"></li>
+      <li><img src="assets/logos/aptos.svg" alt="Aptos" height="24"></li>
+      <li><img src="assets/logos/avalanche.svg" alt="Avalanche" height="24"></li>
+      <li><img src="assets/logos/akash.png" alt="Akash" height="24"></li>
+      <li><img src="assets/logos/kinexys.png" alt="Kinexys" height="24"></li>
+    </ul>
+  </section>
+
+  <section class="applyslab">
+    <div class="wrap in">
+      <div>
+        <h2>Applications close <span class="r">September 6.</span></h2>
+        <p>Involvement Fair August 26, info session September 1. No prior crypto experience required; every major welcome.</p>
+      </div>
+      <a class="slab" href="#recruiting" style="background: var(--paper); color: var(--ink)">See the six dates</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot wrap">
+  <p class="foot__line">
+    <span>© 2026 Blockchain@USC</span>
+    <a href="mailto:bchain@usc.edu">bchain@usc.edu</a>
+    <a href="https://uscblockchainconf.com/" target="_blank" rel="noopener">Conference</a>
+    <a href="https://x.com/0xBlockchainSC" target="_blank" rel="noopener">X</a>
+    <a href="https://www.instagram.com/blockchainatusc/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/BlockchainUSC" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://medium.com/blockchain-at-usc" target="_blank" rel="noopener">Medium</a>
+    <a href="https://www.youtube.com/@blockchainusc" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.linkedin.com/company/trojancrypto" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="fo">FIGHT ON</span>
+  </p>
+</footer>
+
+</body>
+</html>

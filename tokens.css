@@ -1,0 +1,57 @@
+/* Blockchain@USC design tokens · "The Journal"
+ * Derivation: accent sampled from the cardinal of the club mark, chroma pressed to 0.15
+ * for print-ink density; neutrals tinted warm (hue 40-85) to agree with the cardinal/gold anchor.
+ * Committed single-look: light, print-emulating editorial. */
+:root {
+  /* color */
+  --paper:    oklch(96.5% 0.012 85);
+  --paper-2:  oklch(93.5% 0.014 85);
+  --rule:     oklch(84% 0.014 80);
+  --rule-2:   oklch(70% 0.014 70);
+  --ink:      oklch(21% 0.015 40);
+  --muted:    oklch(42% 0.014 50);
+  --faint:    oklch(46% 0.012 55);
+  --accent:   oklch(46% 0.15 24);
+  --accent-2: oklch(38% 0.14 24);
+  --gain:     oklch(45% 0.11 150);
+  --gold:     oklch(84% 0.14 85);
+  --focus:    oklch(46% 0.15 24);
+
+  /* type: Newsreader (display) + Geist (body) + Geist Mono (outlier, role: data, dates, catalog labels) */
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-data:    "Geist Mono", "SFMono-Regular", Menlo, monospace;
+
+  /* scale: 1.25 major third on a 17px body */
+  --text-xs:   0.75rem;
+  --text-sm:   0.8125rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.9531rem;
+  --text-2xl:  2.4414rem;
+  --text-display: clamp(2.6rem, 4.6vw + 1rem, 5rem);
+
+  /* space: 4pt scale */
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8.5rem;
+
+  /* motion */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  /* misc */
+  --measure: 64ch;
+  --z-base: 1; --z-raised: 10; --z-sticky: 200; --z-modal: 400;
+}

@@ -1,17 +1,14 @@
-/* Blockchain@USC design tokens · v2 "Cardinal Mesh"
- * DNA studied from the team's reference image (2026-08-25): near-white canvas with a
- * lavender-to-rose wash and a fine grid, cardinal serif display, floating pill nav,
- * ink pill buttons. Tech register carried by the mono data layer and graph-paper grid.
- * Neutrals tinted cool-violet to agree with the wash; cardinal stays the sole accent.
- * Committed single-look: light. */
+/* Blockchain@USC design tokens · v3 "The Journal, Cardinal Edition"
+ * V1's journal structure printed on the team's chosen stock: near-white paper with a
+ * lavender-to-rose wash anchored to the page top (ink on paper, not a screen effect),
+ * a graph-paper grid as the sheet itself, cardinal serif display, violet-tinted neutrals.
+ * Print corners: no radii, no blur, no shadows. Committed single-look: light. */
 :root {
   /* color */
-  --paper:    oklch(98.4% 0.004 300);
-  --wash-a:   oklch(91% 0.05 290);            /* lavender, background wash only */
-  --wash-b:   oklch(92% 0.045 15);            /* rose, background wash only */
-  --gridline: oklch(70% 0.03 300 / 0.16);     /* graph-paper lines */
-  --surface:  oklch(99.3% 0.002 300 / 0.8);   /* nav pill, blur-backed */
-  --card:     oklch(99.3% 0.002 300 / 0.6);   /* data surfaces */
+  --paper:    oklch(98% 0.005 300);
+  --wash-a:   oklch(91% 0.05 290);            /* lavender, page-top wash only */
+  --wash-b:   oklch(92% 0.045 15);            /* rose, page-top + apply band */
+  --gridline: oklch(70% 0.03 300 / 0.12);     /* graph-paper lines */
   --rule:     oklch(87% 0.012 300);
   --rule-2:   oklch(74% 0.016 300);
   --ink:      oklch(19% 0.02 310);
@@ -36,7 +33,7 @@
   --text-lg:   1.5625rem;
   --text-xl:   1.9531rem;
   --text-2xl:  2.4414rem;
-  --text-display: clamp(2.9rem, 6.2vw + 1rem, 6rem);
+  --text-display: clamp(2.6rem, 4.8vw + 1rem, 5.25rem);
 
   /* space: 4pt scale */
   --space-2xs: 0.25rem;
@@ -48,10 +45,6 @@
   --space-2xl: 4rem;
   --space-3xl: 6rem;
   --space-4xl: 8.5rem;
-
-  /* shape rule: interactive chrome is pill; data surfaces are 12px; rows and rules are square */
-  --r-pill: 999px;
-  --r-md: 12px;
 
   /* motion */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);

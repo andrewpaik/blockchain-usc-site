@@ -14,9 +14,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <style>
-/* Hallmark · genre: editorial · macrostructure: Long Document (journal issue) · theme: journal x cardinal-mesh (V1 structure, team-reference inks: paper oklch(98% 0.005 300) + lavender/rose page-top wash + graph grid · display cardinal oklch(44% 0.16 20) · Newsreader + Geist + Geist Mono[outlier role: data, dates, labels]) · enrichment: real photography (7 officer portraits) · nav: N6 masthead · footer: Ft4 colophon · studied: partial · DNA-source: image (palette + hero copy only; structure is V1's)
+/* Hallmark · genre: editorial · macrostructure: Long Document (journal issue) · theme: journal x cardinal-mesh, quieted (V4) · paper oklch(98% 0.005 300) + page-top wash only · display cardinal oklch(44% 0.16 20) · Newsreader + Geist + Geist Mono[outlier role: data, dates, labels] · enrichment: real photography (7 officer portraits) · nav: N6 masthead · footer: Ft4 colophon
  * Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5
- * knobs: masthead issue-line=split-meta · rule=triple(3+1) · toc=right-rail numbered · statrail=4-up ruled mono · corners=square, no blur, no shadow
+ * V4 reduction: one texture per region (wash top, grid only in the apply band) · nav deduped (contents rail removed) ·
+ * 3 stats, no vertical rules · decorative cardinal = headline + section heads only · logo wall unboxed · masthead one line ·
+ * nav hover underline grows from the left (pattern adapted natively from transitions.dev).
  * contrast: pass (40-41) · slop: pass (42-45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · mobile: pass (34, 49, 50-57) · icons: pass (30)
  * form-from-content: the club's core output is published research; the page is an issue of its own journal, printed on the team's chosen stock. */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,22 +36,15 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-/* the sheet: graph-paper grid across the whole document, scrolling with the page */
-body::before {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    linear-gradient(to right, var(--gridline) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(to bottom, var(--gridline) 1px, transparent 1px) 0 0 / 44px 44px;
-}
-/* the wash: lavender-to-rose printed on the front of the issue, anchored to the page top */
+/* the wash: printed on the front of the issue only, then the paper is plain */
 body::after {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: min(120vh, 1050px);
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: min(88vh, 760px);
   z-index: -1; pointer-events: none;
   background:
-    radial-gradient(56% 62% at 6% 0%, var(--wash-a), transparent 70%),
-    radial-gradient(50% 56% at 96% 34%, var(--wash-b), transparent 72%);
-  -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent);
-  mask-image: linear-gradient(to bottom, black 62%, transparent);
+    radial-gradient(56% 62% at 6% 0%, color-mix(in oklab, var(--wash-a) 62%, transparent), transparent 70%),
+    radial-gradient(48% 54% at 96% 30%, color-mix(in oklab, var(--wash-b) 58%, transparent), transparent 72%);
+  -webkit-mask-image: linear-gradient(to bottom, black 45%, transparent);
+  mask-image: linear-gradient(to bottom, black 45%, transparent);
 }
 ::selection { background: var(--select); color: var(--ink); }
 h1, h2, h3 { font-style: normal; text-wrap: balance; overflow-wrap: anywhere; min-width: 0; }
@@ -68,13 +63,10 @@ img { max-width: 100%; display: block; }
 /* ---------- masthead (N6) ---------- */
 .masthead { padding-top: var(--space-lg); }
 .masthead__issue {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md);
   font-family: var(--font-data); font-size: var(--text-xs); letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--muted);
   border-bottom: 1px solid var(--rule); padding-bottom: var(--space-xs);
 }
-.masthead__issue span { white-space: nowrap; }
-.masthead__issue .due { color: var(--cardinal); }
 .masthead__bank {
   display: flex; align-items: center; justify-content: center; gap: var(--space-md);
   padding-block: var(--space-lg) var(--space-md);
@@ -95,21 +87,28 @@ img { max-width: 100%; display: block; }
 }
 .nav__row::-webkit-scrollbar { display: none; }
 .nav__link {
+  position: relative;
   font-size: var(--text-sm); font-weight: 500; letter-spacing: 0.04em;
   text-decoration: none; white-space: nowrap; color: var(--muted);
   padding: var(--space-sm); min-height: 44px; display: inline-flex; align-items: center;
-  border-bottom: 2px solid transparent;
-  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+  transition: color var(--dur-micro) var(--ease-out);
 }
-.nav__link:hover { color: var(--ink); border-bottom-color: var(--rule-2); }
+/* hover underline grows from the left; adapted natively from transitions.dev */
+.nav__link::after {
+  content: ""; position: absolute; left: var(--space-sm); right: var(--space-sm); bottom: 0.5rem;
+  height: 2px; background: var(--rule-2);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-short) var(--ease-out);
+}
+.nav__link:hover { color: var(--ink); }
+.nav__link:hover::after, .nav__link:focus-visible::after { transform: scaleX(1); }
 .nav__link:active { color: var(--cardinal-2); }
 .nav__link--apply { color: var(--cardinal); font-weight: 600; }
-.nav__link--apply:hover { color: var(--cardinal-2); border-bottom-color: var(--cardinal); }
-.nav__sep { border-bottom: 1px solid var(--rule); }
+.nav__link--apply::after { background: var(--cardinal); }
+.nav__link--apply:hover { color: var(--cardinal-2); }
 
 /* ---------- lede ---------- */
-.lede { padding-block: clamp(2.5rem, 6vw, 5rem) 0; }
-.lede__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); gap: clamp(1.5rem, 5vw, 5rem); }
+.lede { padding-block: clamp(3rem, 7vw, 5.5rem) 0; }
 .lede h1 {
   font-family: var(--font-display); font-optical-sizing: auto;
   font-size: var(--text-display); font-weight: 550; line-height: 1.04;
@@ -138,31 +137,15 @@ img { max-width: 100%; display: block; }
 .tlink:active { color: var(--cardinal-2); }
 p .tlink, li .tlink { min-height: auto; display: inline; }
 
-.contents { border-left: 1px solid var(--rule-2); padding-left: clamp(1rem, 2.5vw, 2rem); align-self: start; }
-.contents h2 { margin-bottom: var(--space-md); }
-.contents ol { list-style: none; counter-reset: toc; }
-.contents li { counter-increment: toc; border-bottom: 1px solid var(--rule); }
-.contents li:last-child { border-bottom: 0; }
-.contents a {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md);
-  text-decoration: none; padding-block: var(--space-xs); min-height: 40px; font-size: 0.9375rem; font-weight: 500;
-  transition: color var(--dur-micro) var(--ease-out);
-}
-.contents a::after { content: counter(toc, decimal-leading-zero); font-family: var(--font-data); font-size: var(--text-xs); color: var(--faint); }
-.contents a:hover { color: var(--cardinal); }
-
-/* ---------- stat rail (T4, ruled; mono numerals carry the tech register) ---------- */
-.statrail { margin-top: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--ink); }
-.statrail__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.stat { padding: var(--space-lg) var(--space-md) var(--space-lg) 0; border-right: 1px solid var(--rule); }
-.stat:last-child { border-right: 0; }
-.stat + .stat { padding-left: var(--space-md); }
+/* ---------- stat rail: three proofs, one rule ---------- */
+.statrail { margin-top: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--ink); }
+.statrail__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-xl); padding-top: var(--space-lg); }
 .stat__n {
   font-family: var(--font-data); font-weight: 600;
-  font-size: clamp(1.5rem, 2.3vw, 2.1rem); line-height: 1.1; letter-spacing: -0.02em;
+  font-size: clamp(1.35rem, 1.9vw, 1.8rem); line-height: 1.1; letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums slashed-zero;
 }
-.stat__q { margin-top: var(--space-xs); font-size: var(--text-sm); color: var(--muted); line-height: 1.4; }
+.stat__q { margin-top: var(--space-2xs); font-size: var(--text-sm); color: var(--muted); line-height: 1.4; }
 
 /* ---------- sections ---------- */
 .section { padding-top: var(--space-3xl); }
@@ -180,7 +163,7 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 .prose .opener { font-family: var(--font-display); font-size: var(--text-md); line-height: 1.5; }
 .prose .opener::first-letter {
   font-family: var(--font-display); font-weight: 600; font-size: 3.2em;
-  float: left; line-height: 0.82; padding-right: 0.09em; color: var(--cardinal);
+  float: left; line-height: 0.82; padding-right: 0.09em;
 }
 .prose h3 { font-family: var(--font-body); font-size: var(--text-base); font-weight: 650; margin: var(--space-xl) 0 var(--space-xs); }
 .aside { border-left: 1px solid var(--rule-2); padding-left: clamp(1rem, 2.5vw, 2rem); align-self: start; font-size: 0.9375rem; }
@@ -201,7 +184,6 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 .cal .e { font-weight: 600; }
 .cal .n { color: var(--muted); font-size: var(--text-sm); }
 .cal tr.due .e, .cal tr.due .d { color: var(--cardinal); }
-.cal__foot { margin-top: var(--space-md); font-size: var(--text-sm); color: var(--muted); }
 
 /* investments */
 .ledger { padding-top: var(--space-xl); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(1.5rem, 5vw, 4.5rem); }
@@ -223,7 +205,7 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 
 /* research */
 .featured { padding-top: var(--space-xl); display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 3fr); gap: clamp(1.5rem, 4vw, 4rem); }
-.featured__kicker { color: var(--cardinal); margin-bottom: var(--space-sm); }
+.featured__kicker { margin-bottom: var(--space-sm); }
 .featured h3 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 550; letter-spacing: -0.015em; line-height: 1.12; max-width: 22ch; }
 .featured h3 a { text-decoration: none; }
 .featured h3 a:hover { color: var(--cardinal); }
@@ -253,8 +235,7 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 .projects__note { margin-top: var(--space-lg); font-size: var(--text-sm); color: var(--muted); max-width: 60ch; }
 
 /* team masthead */
-.board__wrap { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 3fr); gap: clamp(1.5rem, 4vw, 4rem); padding-top: var(--space-xl); }
-.board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(2rem, 5vw, 5rem); }
+.board { padding-top: var(--space-xl); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(2rem, 6vw, 6rem); }
 .board li { list-style: none; display: flex; align-items: center; gap: var(--space-md); padding-block: var(--space-sm); border-bottom: 1px solid var(--rule); }
 .board img { width: 48px; height: 48px; object-fit: cover; filter: grayscale(1); transition: filter var(--dur-short) var(--ease-out); }
 .board li:hover img { filter: grayscale(0); }
@@ -264,20 +245,20 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 .board .b-links { display: flex; gap: var(--space-sm); font-size: var(--text-sm); }
 .board .b-links a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; padding-block: var(--space-sm); }
 .board .b-links a:hover { color: var(--cardinal); }
-.board__aside { align-self: start; border-left: 1px solid var(--rule-2); padding-left: var(--space-lg); font-size: 0.9375rem; color: var(--muted); margin-top: var(--space-md); }
-.board__aside p + p { margin-top: var(--space-md); }
 
-/* partners */
-.partners__wall { padding-top: var(--space-xl); }
-.logowall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
-.logowall li { list-style: none; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); display: grid; place-items: center; padding: var(--space-lg) var(--space-md); min-height: 92px; }
-.logowall img { filter: brightness(0); opacity: 0.68; max-height: 26px; width: auto; max-width: 82%; transition: opacity var(--dur-short) var(--ease-out); }
-.logowall li:hover img { opacity: 1; }
+/* partners: logos only, no boxes */
+.logowall { padding-top: var(--space-xl); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-xl) var(--space-lg); align-items: center; }
+.logowall li { list-style: none; display: grid; place-items: center; min-height: 44px; }
+.logowall img { filter: brightness(0); opacity: 0.55; max-height: 24px; width: auto; max-width: 88%; transition: opacity var(--dur-short) var(--ease-out); }
+.logowall li:hover img { opacity: 0.9; }
 
-/* apply band: the second place the wash is printed */
+/* apply band: tint plus the one contained grid texture */
 .applyband {
   margin-top: var(--space-4xl); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
-  background: linear-gradient(100deg, oklch(91% 0.05 290 / 0.4), oklch(92% 0.045 15 / 0.45));
+  background:
+    linear-gradient(to right, var(--gridline) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(to bottom, var(--gridline) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(100deg, oklch(91% 0.05 290 / 0.4), oklch(92% 0.045 15 / 0.45));
 }
 .applyband__in { padding-block: var(--space-2xl); display: grid; grid-template-columns: minmax(0, 7fr) auto; gap: var(--space-xl); align-items: center; }
 .applyband h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3.4vw, 2.6rem); font-weight: 600; letter-spacing: -0.015em; line-height: 1.12; color: var(--cardinal); max-width: 24ch; }
@@ -308,15 +289,9 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 60rem) {
-  .lede__grid, .about__grid, .ledger, .featured, .board__wrap { grid-template-columns: minmax(0, 1fr); }
-  .contents { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: var(--space-lg); }
-  .statrail__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stat:nth-child(2) { border-right: 0; }
-  .stat:nth-child(2) ~ .stat { border-top: 1px solid var(--rule); }
-  .stat:nth-child(3) { padding-left: 0; }
+  .about__grid, .ledger, .featured { grid-template-columns: minmax(0, 1fr); }
   .featured__meta { border-left: 0; padding-left: 0; }
   .board { grid-template-columns: minmax(0, 1fr); }
-  .board__aside { border-left: 0; padding-left: 0; margin-top: var(--space-lg); }
   .logowall { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .applyband__in { grid-template-columns: minmax(0, 1fr); }
   .nights li { grid-template-columns: 2.5rem minmax(0, 1fr) auto; }
@@ -325,9 +300,10 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
 }
 @media (max-width: 40rem) {
   :root { --text-display: clamp(2.2rem, 9vw, 2.9rem); }
-  .masthead__issue { justify-content: center; }
-  .masthead__issue span:first-child { display: none; }
+  .masthead__issue { text-align: center; }
+  .masthead__issue .org { display: none; }
   .masthead__mark { width: 34px; height: 34px; }
+  .statrail__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); }
   .archive a { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
   .archive .a-by { text-align: left; white-space: normal; }
   .programs li { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
@@ -337,14 +313,13 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
   .board li { flex-wrap: wrap; }
   .board .b-name { white-space: normal; }
   .colophon__grid { grid-template-columns: minmax(0, 1fr); }
-  .stat__n { font-size: 1.35rem; }
 }
 </style>
 </head>
 <body>
 
 <header class="masthead wrap reveal" style="--i:0">
-  <p class="masthead__issue"><span>Est. 2018 · The student blockchain organization of USC</span> <span class="due">Fall &rsquo;26 applications close Sep 6</span></p>
+  <p class="masthead__issue">Est. 2018<span class="org"> · The student blockchain organization of USC</span></p>
   <div class="masthead__bank">
     <img class="masthead__mark" src="assets/logo-128.png" alt="" width="44" height="44">
     <p class="masthead__word"><a href="#top">Blockchain@USC</a></p>
@@ -360,40 +335,25 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
       <a class="nav__link nav__link--apply" href="#recruiting">Apply Fall &rsquo;26</a>
     </div>
   </nav>
-  <div class="nav__sep" aria-hidden="true"></div>
 </header>
 
 <main id="top">
 
   <section class="lede wrap">
-    <div class="lede__grid">
-      <div class="reveal" style="--i:1">
-        <h1>Research. Invest. Build.</h1>
-        <p class="lede__sub">A community that thinks differently, with teams across research, investments, projects, consulting, and engineering.</p>
-        <div class="lede__ctas">
-          <a class="chip chip--ink" href="#recruiting">Apply Fall &rsquo;26 →</a>
-          <a class="tlink" href="https://uscblockchainconf.com/" target="_blank" rel="noopener">Our conference ↗</a>
-        </div>
+    <div class="reveal" style="--i:1">
+      <h1>Research. Invest. Build.</h1>
+      <p class="lede__sub">A community that thinks differently, with teams across research, investments, projects, consulting, and engineering.</p>
+      <div class="lede__ctas">
+        <a class="chip chip--ink" href="#recruiting">Apply Fall &rsquo;26 →</a>
+        <a class="tlink" href="https://uscblockchainconf.com/" target="_blank" rel="noopener">Our conference ↗</a>
       </div>
-      <aside class="contents reveal" style="--i:2" aria-label="In this issue">
-        <h2 class="label">In this issue</h2>
-        <ol>
-          <li><a href="#about">Who we are</a></li>
-          <li><a href="#recruiting">Fall &rsquo;26 calendar</a></li>
-          <li><a href="#investments">The ledger</a></li>
-          <li><a href="#research">The archive</a></li>
-          <li><a href="#projects">Build nights</a></li>
-          <li><a href="#team">The masthead</a></li>
-        </ol>
-      </aside>
     </div>
 
-    <div class="statrail reveal" style="--i:3">
+    <div class="statrail reveal" style="--i:2">
       <div class="statrail__grid">
-        <div class="stat"><p class="stat__n">$100K+</p><p class="stat__q">digital-asset portfolio, pitched and voted on by members</p></div>
-        <div class="stat"><p class="stat__n">10</p><p class="stat__q">papers published, from consensus theory to incentive design</p></div>
-        <div class="stat"><p class="stat__n">#2 / 17</p><p class="stat__q">all-time rank by ETH return on the DormDAO leaderboard</p></div>
-        <div class="stat"><p class="stat__n">$7M+</p><p class="stat__q">raised by member founders, from investors including Paradigm</p></div>
+        <div class="stat"><p class="stat__n">$100K+</p><p class="stat__q">member-run digital-asset portfolio</p></div>
+        <div class="stat"><p class="stat__n">10</p><p class="stat__q">published papers since 2022</p></div>
+        <div class="stat"><p class="stat__n">$7M+</p><p class="stat__q">raised by member founders</p></div>
       </div>
     </div>
   </section>
@@ -427,7 +387,7 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
       <h2 class="section__head">Fall &rsquo;26 calendar</h2>
       <div class="cal__table">
       <table>
-        <caption>Six dates between you and membership. The first two are open to everyone; bring questions.</caption>
+        <caption>Six dates between you and membership. The first two are open to everyone; applications are due the Sunday after.</caption>
         <thead><tr><th scope="col">Date</th><th scope="col">Event</th><th scope="col">Details</th></tr></thead>
         <tbody>
           <tr><td class="d">Wed, Aug 26</td><td class="e">Involvement Fair</td><td class="n">11:00am to 2:00pm, open to all</td></tr>
@@ -438,7 +398,6 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
           <tr><td class="d">Tue, Sep 15</td><td class="e">First member meeting</td><td class="n">invite only</td></tr>
         </tbody>
       </table>
-      <p class="cal__foot">Start at the Involvement Fair or the info session; applications are due the Sunday after.</p>
       </div>
     </div>
   </section>
@@ -492,7 +451,7 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
       <div>
         <p class="label featured__kicker">Latest paper</p>
         <h3><a href="https://medium.com/blockchain-at-usc/making-web3-social-9ce832042ed0" target="_blank" rel="noopener">Making Web3 Social</a></h3>
-        <p>&ldquo;Over the past few months, I&rsquo;ve been reflecting on how often I turn to social media when I want to learn something new or connect with people around me.&rdquo; On what it would take for social to move on-chain.</p>
+        <p>On what it would take for social to move on-chain: identity, connection, and why we keep returning to the feed.</p>
       </div>
       <div class="featured__meta">
         <strong>Shriya Upadhyay</strong>
@@ -540,60 +499,52 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
         <a class="tlink" href="https://github.com/BlockchainUSC/HackSC-2024" target="_blank" rel="noopener">Repo ↗</a>
       </li>
     </ol>
-    <p class="projects__note">Workshops run hands-on: bring a laptop, leave with a deployed contract. Past sessions live on <a class="tlink" href="https://github.com/BlockchainUSC" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p class="projects__note">Bring a laptop, leave with a deployed contract. Past sessions live on <a class="tlink" href="https://github.com/BlockchainUSC" target="_blank" rel="noopener">GitHub</a>.</p>
   </section>
 
   <section id="team" class="section wrap">
     <h2 class="section__head">The masthead</h2>
-    <div class="board__wrap">
-      <ul class="board">
-        <li><img src="assets/team/thumbs/sebastian_sampedro_illustrated.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Co-President</span><span class="b-name">Sebastian Sampedro</span></span>
-          <span class="b-links"><a href="https://x.com/donostiako_" target="_blank" rel="noopener">X</a><a href="https://www.linkedin.com/in/sxsampedro/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-        <li><img src="assets/team/thumbs/alp_guneri_illustrated.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Co-President</span><span class="b-name">Alp Guneri</span></span>
-          <span class="b-links"><a href="https://x.com/GuneriAlp" target="_blank" rel="noopener">X</a><a href="https://www.linkedin.com/in/alpguneri/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-        <li><img src="assets/team/thumbs/austin_lee.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Director of Projects</span><span class="b-name">Austin Lee</span></span>
-          <span class="b-links"><a href="https://www.linkedin.com/in/yuanchiaolee/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-        <li><img src="assets/team/thumbs/andrew_paik.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Director of Research &amp; Investments</span><span class="b-name">Andrew Paik</span></span>
-          <span class="b-links"><a href="https://www.linkedin.com/in/andrew-paik-9b78882b3/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-        <li><img src="assets/team/thumbs/lindsey_ren.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Head of Partnerships</span><span class="b-name">Lindsey Ren</span></span>
-          <span class="b-links"><a href="https://www.linkedin.com/in/lindsey-ren/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-        <li><img src="assets/team/thumbs/bhargav_cowdary.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Head of Community</span><span class="b-name">Bhargav Cowdary</span></span>
-          <span class="b-links"><a href="https://www.linkedin.com/in/bhargav-chowdary0/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-        <li><img src="assets/team/thumbs/melanie_aguirre_illustrated.jpg" alt="" width="48" height="48" loading="lazy">
-          <span class="b-id"><span class="b-role">Head of Marketing</span><span class="b-name">Melanie Aguirre</span></span>
-          <span class="b-links"><a href="https://www.linkedin.com/in/melanie-aguirre05/" target="_blank" rel="noopener">LinkedIn</a></span></li>
-      </ul>
-      <aside class="board__aside">
-        <p>Seven officers, two desks, one open application each fall.</p>
-        <p>The people driving research, engineering, and community at Blockchain@USC in 2026.</p>
-      </aside>
-    </div>
+    <ul class="board">
+      <li><img src="assets/team/thumbs/sebastian_sampedro_illustrated.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Co-President</span><span class="b-name">Sebastian Sampedro</span></span>
+        <span class="b-links"><a href="https://x.com/donostiako_" target="_blank" rel="noopener">X</a><a href="https://www.linkedin.com/in/sxsampedro/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><img src="assets/team/thumbs/alp_guneri_illustrated.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Co-President</span><span class="b-name">Alp Guneri</span></span>
+        <span class="b-links"><a href="https://x.com/GuneriAlp" target="_blank" rel="noopener">X</a><a href="https://www.linkedin.com/in/alpguneri/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><img src="assets/team/thumbs/austin_lee.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Director of Projects</span><span class="b-name">Austin Lee</span></span>
+        <span class="b-links"><a href="https://www.linkedin.com/in/yuanchiaolee/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><img src="assets/team/thumbs/andrew_paik.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Director of Research &amp; Investments</span><span class="b-name">Andrew Paik</span></span>
+        <span class="b-links"><a href="https://www.linkedin.com/in/andrew-paik-9b78882b3/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><img src="assets/team/thumbs/lindsey_ren.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Head of Partnerships</span><span class="b-name">Lindsey Ren</span></span>
+        <span class="b-links"><a href="https://www.linkedin.com/in/lindsey-ren/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><img src="assets/team/thumbs/bhargav_cowdary.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Head of Community</span><span class="b-name">Bhargav Cowdary</span></span>
+        <span class="b-links"><a href="https://www.linkedin.com/in/bhargav-chowdary0/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><img src="assets/team/thumbs/melanie_aguirre_illustrated.jpg" alt="" width="48" height="48" loading="lazy">
+        <span class="b-id"><span class="b-role">Head of Marketing</span><span class="b-name">Melanie Aguirre</span></span>
+        <span class="b-links"><a href="https://www.linkedin.com/in/melanie-aguirre05/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+    </ul>
   </section>
 
   <section class="section wrap" aria-label="Partners">
     <h2 class="section__head">Partners</h2>
-    <div class="partners__wall">
     <ul class="logowall">
-      <li><img src="assets/logos/vaneck.svg" alt="VanEck" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/a16z-mono.png" alt="a16z crypto" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/solana.svg" alt="Solana" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/circle.svg" alt="Circle" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/optimism.svg" alt="Optimism" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/superscrypt.png" alt="Superscrypt" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/dormdao.png" alt="DormDAO" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/sui.svg" alt="Sui" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/aptos.svg" alt="Aptos" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/avalanche.svg" alt="Avalanche" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/akash.png" alt="Akash" height="26" loading="lazy"></li>
-      <li><img src="assets/logos/kinexys.png" alt="Kinexys" height="26" loading="lazy"></li>
+      <li><img src="assets/logos/vaneck.svg" alt="VanEck" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/a16z-mono.png" alt="a16z crypto" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/solana.svg" alt="Solana" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/circle.svg" alt="Circle" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/optimism.svg" alt="Optimism" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/superscrypt.png" alt="Superscrypt" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/dormdao.png" alt="DormDAO" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/sui.svg" alt="Sui" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/aptos.svg" alt="Aptos" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/avalanche.svg" alt="Avalanche" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/akash.png" alt="Akash" height="24" loading="lazy"></li>
+      <li><img src="assets/logos/kinexys.png" alt="Kinexys" height="24" loading="lazy"></li>
     </ul>
-    </div>
   </section>
 
   <div class="applyband">
@@ -612,7 +563,7 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
   <div class="colophon__grid">
     <div>
       <h3 class="label">Colophon</h3>
-      <p>Blockchain@USC advances decentralized systems through rigorous research and development at the University of Southern California. Est. 2018. Set in Newsreader and Geist, on graph paper.</p>
+      <p>Blockchain@USC advances decentralized systems through rigorous research and development at the University of Southern California. Est. 2018. Set in Newsreader and Geist.</p>
     </div>
     <div>
       <h3 class="label">Write to us</h3>

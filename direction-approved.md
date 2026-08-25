@@ -28,3 +28,15 @@ reference DNA was extracted and the Journal's content rebuilt in it; the tech pu
 the graph-paper grid canvas and the mono data layer (stat rail, ledger, dates, labels).
 This is an iteration inside a user-chosen direction (huashu exemption: direction picked by the
 user), so no new three-direction round. Deployed to production 2026-08-25.
+
+## V4 (2026-08-25): reduction pass ("too much going on")
+
+Cuts, per the bombardment diagnosis: contents rail removed (nav deduped from 12 items to 6);
+one texture per region (wash top-only and weaker, grid only inside the apply band); stats 4 to 3
+with no vertical rules; decorative cardinal rationed to headline + section heads (drop cap to ink,
+kicker to muted, top-strip deadline removed); logo wall unboxed; team aside, calendar footer, and
+the featured paper's long quote removed; masthead loses one of four rules. Team also suggested five
+UI tools (shadcn, beui, rareui, beautifului, transitions.dev): all React-ecosystem component kits,
+not installed into this dependency-free build; recorded in TOOLING.md as the sanctioned stack for a
+future React migration. One pattern adopted natively today: transitions.dev-style origin-aware nav
+hover underline. Deployed to production.

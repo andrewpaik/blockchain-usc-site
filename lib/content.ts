@@ -7,14 +7,20 @@ export const stats = [
   { n: "$7M+", q: "raised by member founders" },
 ];
 
+const gcal = (text: string, dates: string) =>
+  `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(text)}&dates=${dates}&ctz=America/Los_Angeles&location=${encodeURIComponent("University of Southern California")}`;
+
 export const calendar = [
-  { d: "Wed, Aug 26", e: "Involvement Fair", n: "11:00am to 2:00pm, open to all" },
-  { d: "Tue, Sep 1", e: "Open Info Session", n: "7:00pm to 8:00pm, open to all" },
-  { d: "Sun, Sep 6", e: "Application deadline", n: "11:59pm sharp", due: true },
+  { d: "Wed, Aug 26", e: "Involvement Fair", n: "11:00am to 2:00pm, open to all", cal: gcal("Blockchain@USC at the Involvement Fair", "20260826T110000/20260826T140000") },
+  { d: "Tue, Sep 1", e: "Open Info Session", n: "7:00pm to 8:00pm, open to all", cal: gcal("Blockchain@USC Open Info Session", "20260901T190000/20260901T200000") },
+  { d: "Sun, Sep 6", e: "Application deadline", n: "11:59pm sharp", due: true, cal: gcal("Blockchain@USC application deadline", "20260906T230000/20260906T235900") },
   { d: "Sep 10 & 11", e: "Interviews", n: "invite only, times TBD" },
   { d: "Sun, Sep 13", e: "Social Mixer", n: "6:00pm to 8:00pm, invite only" },
   { d: "Tue, Sep 15", e: "First member meeting", n: "invite only" },
-];
+] as { d: string; e: string; n: string; due?: boolean; cal?: string }[];
+
+/* Fall '26 application deadline, used by the live countdown. */
+export const applicationDeadline = "2026-09-06T23:59:00-07:00";
 
 export const ledger = [
   { k: "Founded", v: "Oct 2023" },
@@ -52,12 +58,15 @@ export const featuredPaper = {
 };
 
 export const papers = [
-  { date: "Oct 2025", title: "Unichain Incentive Analysis", by: "Sampedro, Saar, Becerra", href: "https://medium.com/blockchain-at-usc/unichain-incentive-analysis-43390c48e423" },
-  { date: "Sep 2025", title: "Incentive Impact Analysis: Velodrome", by: "Rai, Chai, Zhou, Feng", href: "https://medium.com/blockchain-at-usc/incentive-impact-analysis-velodrome-0741ff9676c4" },
-  { date: "Oct 2023", title: "The Fault-Tolerant Consensus Problem and Its Solutions", by: "Zaarour", href: "https://medium.com/blockchain-at-usc/the-fault-tolerant-consensus-problem-and-its-solutions-in-blockchains-and-distributed-systems-7f883227ebc7" },
-  { date: "Oct 2023", title: "Web3 Social: Identity, Connection & Value Creation", by: "with Superscrypt", href: "https://medium.com/blockchain-at-usc/web3-social-driving-new-forms-of-identity-connection-value-creation-889babc9fe54" },
-  { date: "Mar 2023", title: "Account Abstraction and EIP-4337: Ethereum UX from 0 to 1", by: "Zaarour", href: "https://medium.com/blockchain-at-usc/deep-dive-into-account-abstraction-and-eip-4337-scaling-ethereum-ux-from-0-to-1-c2e6da49d226" },
-  { date: "Nov 2022", title: "Scaling Solutions of Monolithic and Modular Chains", by: "Chen, Gnanasekaran, Jeter", href: "https://medium.com/blockchain-at-usc/scaling-solutions-of-monolithic-and-modular-chains-922b6ee7bfb4" },
+  { date: "Oct 2025", title: "Unichain Incentive Analysis", by: "Sampedro, Saar, Becerra", tag: "DeFi", href: "https://medium.com/blockchain-at-usc/unichain-incentive-analysis-43390c48e423" },
+  { date: "Sep 2025", title: "Incentive Impact Analysis: Velodrome", by: "Rai, Chai, Zhou, Feng", tag: "Optimism", href: "https://medium.com/blockchain-at-usc/incentive-impact-analysis-velodrome-0741ff9676c4" },
+  { date: "Oct 2023", title: "The Fault-Tolerant Consensus Problem and Its Solutions", by: "Zaarour", tag: "distributed systems", href: "https://medium.com/blockchain-at-usc/the-fault-tolerant-consensus-problem-and-its-solutions-in-blockchains-and-distributed-systems-7f883227ebc7" },
+  { date: "Oct 2023", title: "Web3 Social: Identity, Connection & Value Creation", by: "with Superscrypt", tag: "web3", href: "https://medium.com/blockchain-at-usc/web3-social-driving-new-forms-of-identity-connection-value-creation-889babc9fe54" },
+  { date: "Mar 2023", title: "Account Abstraction and EIP-4337: Ethereum UX from 0 to 1", by: "Zaarour", tag: "Ethereum", href: "https://medium.com/blockchain-at-usc/deep-dive-into-account-abstraction-and-eip-4337-scaling-ethereum-ux-from-0-to-1-c2e6da49d226" },
+  { date: "Nov 2022", title: "In the Re-embedding Moment", by: "Zhou", tag: "crypto", href: "https://medium.com/blockchain-at-usc/reembedding-dao-d372905624a8" },
+  { date: "Nov 2022", title: "Talking to the Stranger, SBF", by: "Zhou", tag: "psychology", href: "https://medium.com/blockchain-at-usc/ftx-sbf-crisis-1e425004317a" },
+  { date: "Nov 2022", title: "Scaling Solutions of Monolithic and Modular Chains", by: "Chen, Gnanasekaran, Jeter", tag: "Avalanche", href: "https://medium.com/blockchain-at-usc/scaling-solutions-of-monolithic-and-modular-chains-922b6ee7bfb4" },
+  { date: "Nov 2022", title: "How Reddit Created a Successful NFT Project in Crypto Winter", by: "Cajigal", tag: "NFT", href: "https://medium.com/blockchain-at-usc/how-reddit-created-a-successful-nft-project-in-crypto-winter-and-what-it-means-for-the-web-3-27afac2d7bea" },
 ];
 
 export const buildNights = [

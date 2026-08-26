@@ -1,4 +1,5 @@
-import { links, stats } from "@/lib/content";
+import { links, partners, stats } from "@/lib/content";
+import { StatNumber, TiltMark } from "@/components/site/interactive";
 
 export function Hero() {
   return (
@@ -21,21 +22,33 @@ export function Hero() {
         </div>
         {/* The issue's figure: the club's own mark, printed large. Swap for a real
             photograph of the club when one exists; the slot takes either. */}
-        <div className="lede__mark">
+        <TiltMark>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/assets/logo.png" alt="" width={1080} height={1080} />
-        </div>
+        </TiltMark>
       </div>
 
       <div className="statrail reveal" style={{ "--i": 2 } as React.CSSProperties}>
         <div className="statrail__grid">
           {stats.map((s) => (
             <div key={s.n}>
-              <p className="stat__n">{s.n}</p>
+              <StatNumber value={s.n} />
               <p className="stat__q">{s.q}</p>
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="pband reveal" style={{ "--i": 3 } as React.CSSProperties} aria-label="Partners">
+        <p className="label">Conference &amp; program partners</p>
+        <ul className="logowall">
+          {partners.map((p) => (
+            <li key={p.name}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={p.img} alt={p.name} height={24} loading="lazy" />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { board, partners } from "@/lib/content";
+import { board } from "@/lib/content";
 
 export function Team() {
   return (
@@ -23,22 +23,6 @@ export function Team() {
                 LinkedIn
               </a>
             </span>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-export function Partners() {
-  return (
-    <section className="section wrap" aria-label="Partners">
-      <h2 className="section__head">Partners</h2>
-      <ul className="logowall">
-        {partners.map((p) => (
-          <li key={p.name}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={p.img} alt={p.name} height={24} loading="lazy" />
           </li>
         ))}
       </ul>

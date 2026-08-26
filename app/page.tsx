@@ -1,7 +1,7 @@
 import { Masthead } from "@/components/site/masthead";
 import { Hero } from "@/components/site/hero";
 import { About, Investments, Projects, Research } from "@/components/site/sections";
-import { Partners, Team } from "@/components/site/people";
+import { Team } from "@/components/site/people";
 import { ApplyBand, Colophon } from "@/components/site/footer";
 
 export default function Page() {
@@ -15,7 +15,6 @@ export default function Page() {
         <Research />
         <Projects />
         <Team />
-        <Partners />
         <ApplyBand />
       </main>
       <Colophon />

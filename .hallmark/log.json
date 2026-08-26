@@ -2,6 +2,15 @@
   {
     "date": "2026-08-25",
     "macrostructure": "Long Document (journal issue)",
+    "theme": "journal x cardinal-mesh (V6: teammate content parity + interaction layer)",
+    "vibe": "partners band under the opening spread; scroll-spy, return bar, count-up, tilt, live countdown, calendar links",
+    "nav": "N6 masthead + slim return bar",
+    "footer": "Ft4 colophon",
+    "brief": "Blockchain@USC v6: live-site parity, partners up top, motivated interactivity"
+  },
+  {
+    "date": "2026-08-25",
+    "macrostructure": "Long Document (journal issue)",
     "theme": "journal x cardinal-mesh, quieted (V4 look, V5 runtime)",
     "theme_axes": "light / roman-serif / warm-cardinal + violet wash",
     "vibe": "same issue, now a Next.js static export; the mark printed large as the hero figure",

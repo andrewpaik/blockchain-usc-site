@@ -195,6 +195,32 @@ img { max-width: 100%; display: block; }
 .nav__link--apply { color: var(--cardinal); font-weight: 600; }
 .nav__link--apply::after { background: var(--cardinal); }
 .nav__link--apply:hover { color: var(--cardinal-2); }
+/* scroll-spy: the underline rests on the section being read */
+.nav__link--active { color: var(--ink); }
+.nav__link--active::after { transform: scaleX(1); }
+
+/* ---------- return bar: slim issue-line once the masthead scrolls away ---------- */
+.returnbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: color-mix(in oklab, var(--paper) 90%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+  transform: translateY(-100%);
+  transition: transform var(--dur-short) var(--ease-out);
+}
+.returnbar--on { transform: translateY(0); }
+.returnbar__in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); min-height: 44px; }
+.returnbar__word {
+  font-family: var(--font-data); font-size: var(--text-xs); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+  text-decoration: none; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center;
+}
+.returnbar__word:hover { color: var(--cardinal); }
+.returnbar__apply {
+  font-size: var(--text-sm); font-weight: 600; color: var(--cardinal);
+  text-decoration: none; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center;
+}
+.returnbar__apply:hover { color: var(--cardinal-2); text-decoration: underline; text-underline-offset: 4px; }
 
 /* ---------- lede: text left, the mark as the issue's figure at right ---------- */
 .lede { padding-block: clamp(3rem, 7vw, 5.5rem) 0; }
@@ -207,7 +233,7 @@ img { max-width: 100%; display: block; }
 .lede__sub { margin-top: var(--space-lg); max-width: 46ch; font-size: var(--text-md); line-height: 1.55; color: var(--muted); }
 .lede__ctas { margin-top: var(--space-xl); display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; }
 .lede__mark { justify-self: end; align-self: center; padding-right: clamp(0px, 2vw, 2rem); }
-.lede__mark img { width: clamp(200px, 24vw, 340px); height: auto; }
+.lede__mark img { width: clamp(200px, 24vw, 340px); height: auto; transition: transform var(--dur-short) var(--ease-out); will-change: transform; }
 .chip {
   font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600; white-space: nowrap;
   text-decoration: none; padding: var(--space-sm) var(--space-lg);
@@ -238,6 +264,18 @@ p .tlink, li .tlink { min-height: auto; display: inline; }
   font-variant-numeric: tabular-nums slashed-zero;
 }
 .stat__q { margin-top: var(--space-2xs); font-size: var(--text-sm); color: var(--muted); line-height: 1.4; }
+
+/* partners band: trust strip directly under the opening spread */
+.pband { margin-top: var(--space-2xl); border-top: 1px solid var(--rule-2); padding-top: var(--space-lg); }
+.pband .logowall { padding-top: var(--space-lg); }
+
+/* apply-band countdown */
+.deadline {
+  margin-top: var(--space-sm); font-family: var(--font-data); font-size: var(--text-sm);
+  color: var(--cardinal); font-variant-numeric: tabular-nums;
+}
+
+.cal .add { white-space: nowrap; }
 
 /* ---------- sections ---------- */
 .section { padding-top: var(--space-3xl); }

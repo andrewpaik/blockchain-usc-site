@@ -1,4 +1,5 @@
 import { links, socials } from "@/lib/content";
+import { DeadlineCountdown } from "@/components/site/interactive";
 
 export function ApplyBand() {
   return (
@@ -10,6 +11,7 @@ export function ApplyBand() {
             No prior crypto experience required. Start at the Involvement Fair on August 26 or the
             info session on September 1.
           </p>
+          <DeadlineCountdown />
         </div>
         <a className="chip chip--accent" href="#recruiting">
           See the calendar

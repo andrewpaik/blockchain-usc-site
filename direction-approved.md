@@ -50,3 +50,16 @@ extracted to lib/content.ts so officers edit data instead of markup. V4 look pre
 Hero figure: the club's own mark printed large (real asset over generated or stock; the conference
 site had no usable event photography). The slot swaps to a real photograph when one exists.
 Static V1-V4 files archived under archive/.
+
+## V6 (2026-08-25): live-site parity + partners up top + interaction layer (user-requested)
+
+Diffed the teammate's updated blockchainatusc.com: restored the 3 trimmed papers (Re-embedding
+Moment, SBF essay, Reddit NFT) so the archive shows all 10, carried topic tags into the data, and
+took the "Solidity fundamentals to ZK proofs" line. Partners moved to a quiet trust band directly
+under the stat rail (logo-only, taste-skill's sanctioned position). Interactivity, each with a job:
+scroll-spy nav underline (orientation), slim return bar after the masthead scrolls away (wayfinding
++ persistent Apply), stat count-up on first view (data emphasis), the mark tilting under a fine
+pointer (objecthood; the one delight), live days-remaining countdown in the apply band (real data),
+and add-to-calendar links on the three open dates (function). IO-only, no scroll listeners,
+reduced-motion collapses everything. Verified: countdown, tilt, count-up in-pane; IO features
+confirmed firing once fronted (pane cannot visually scroll; final check on the live URL).

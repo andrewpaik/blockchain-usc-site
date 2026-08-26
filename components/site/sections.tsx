@@ -71,7 +71,17 @@ export function About() {
                 <tr key={row.e} className={row.due ? "due" : undefined}>
                   <td className="d">{row.d}</td>
                   <td className="e">{row.e}</td>
-                  <td className="n">{row.n}</td>
+                  <td className="n">
+                    {row.n}
+                    {row.cal && (
+                      <>
+                        {" · "}
+                        <a className="tlink add" href={row.cal} target="_blank" rel="noopener">
+                          Add to calendar ↗
+                        </a>
+                      </>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -196,7 +206,8 @@ export function Projects() {
         ))}
       </ol>
       <p className="projects__note">
-        Bring a laptop, leave with a deployed contract. Past sessions live on{" "}
+        From Solidity fundamentals to ZK proofs: bring a laptop, leave with a deployed contract.
+        Past sessions live on{" "}
         <a className="tlink" href={links.github} target="_blank" rel="noopener">
           GitHub
         </a>
